@@ -1,0 +1,13 @@
+### Get /api/data
+GET http://localhost:2104/api/data
+
+### Post /api/data
+POST http://localhost:2104/api/data
+Content-Type: application/json
+
+{
+    "name": "sam"
+}
+
+### Delete /api/data
+DELETE http://localhost:2104/api/data
