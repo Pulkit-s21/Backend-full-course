@@ -4,7 +4,7 @@ function authMiddleWare(req, res, next) {
   const token = req.headers["authorization"]
 
   if (!token) {
-    return res.stauts(401).json({ message: "Token not found!" })
+    return res.stauts(404).json({ message: "Token not found!" })
   }
 
   jwt.verify(token, process.env.JWT_SECRETKEY, (err, decoded) => {
