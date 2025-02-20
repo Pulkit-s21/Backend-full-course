@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    container_name: blog-post
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/blogpost
+      - JWT_SECRET=blog_post_practice_project
+      - NODE_ENV=development
+      - PORT=2104
+    ports:
+      - "2104:2104"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:13-alpine
+    container_name: blogpost-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blogpost
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

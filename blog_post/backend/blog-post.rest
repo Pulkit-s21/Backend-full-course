@@ -1,0 +1,55 @@
+### POST /auth/register
+POST http://localhost:2104/auth/register
+Content-Type: application/json
+
+{
+    "username": "test1@gmail.com",
+    "password": "123123123"
+}
+
+### POST /auth/login
+POST http://localhost:2104/auth/login
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+{
+    "username": "test1@gmail.com",
+    "password": "123123123"
+}
+
+### GET /blogs/all
+GET http://localhost:2104/blogs/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+### GET /blogs
+GET http://localhost:2104/blogs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+### GET /blogs/:id
+GET http://localhost:2104/blogs/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+### POST /blogs
+POST http://localhost:2104/blogs
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+{
+    "title": "New blog is being created",
+    "description": "New blog",
+    "content": "This blog is new and was created using REST Client"
+}
+
+### PUT /blogs/:id
+PUT http://localhost:2104/blogs/6
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+{
+    "title": "Edited the title for this blog 2",
+    "description": "Edited description"
+}
+
+### DELETE /blogs/:id
+DELETE http://localhost:2104/blogs/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
