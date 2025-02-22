@@ -6,6 +6,7 @@ const router = Router()
 // ? db is 3rd party entry so communication btw server and db will be asynchronous
 // get all blogs
 router.get("/all", async (req, res) => {
+  const limit = parseInt(req.query.limit) || 10
   try {
     const blogs = await prisma.blog.findMany({
       where: {
@@ -14,8 +15,17 @@ router.get("/all", async (req, res) => {
         },
       },
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
+      take: limit,
+      // need to send this part explicitly
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+      },
     })
 
     if (!blogs)
@@ -38,8 +48,8 @@ router.get("/", async (req, res) => {
         userId: req.userId,
       },
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
     })
 
     if (!blogs)
@@ -79,18 +89,20 @@ router.get("/:id", async (req, res) => {
 // create blog
 router.post("/", async (req, res) => {
   try {
-    const { title, description, content } = req.body
+    const { title, description, content, tags, image } = req.body
 
-    if (!title || !description || !content)
-      return res
-        .status(400)
-        .json({ message: "Title, description and content are required" })
+    if (!title || !description || !content || !tags || !image)
+      return res.status(400).json({
+        message: "Title, description, content, image and tags are required",
+      })
 
     const blog = await prisma.blog.create({
       data: {
         title,
         description,
         content,
+        tags,
+        image,
         userId: req.userId,
       },
     })
