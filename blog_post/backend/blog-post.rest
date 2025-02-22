@@ -3,27 +3,28 @@ POST http://localhost:2104/auth/register
 Content-Type: application/json
 
 {
-    "username": "test1@gmail.com",
-    "password": "123123123"
+    "username": "admin4@admin.com",
+    "password": "123456789"
 }
 
 ### POST /auth/login
 POST http://localhost:2104/auth/login
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MDcwLCJleHAiOjE3NDAyMTM0NzB9.K5hVYPmZCQIRnJSNAVkoKqehDwqnXElWfTbGcu25iy4
 
 {
-    "username": "test1@gmail.com",
-    "password": "123123123"
+    "username": "admin4@admin.com",
+    "password": "123456789"
 }
 
 ### GET /blogs/all
-GET http://localhost:2104/blogs/all
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+GET http://localhost:2104/blogs/all?limit=1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0MDEyNjY0NywiZXhwIjoxNzQwMjEzMDQ3fQ.3KcZkF59CUjeQd4xOi-phezB8MwTAKwLlBa-cEp3NyM
+
 
 ### GET /blogs
 GET http://localhost:2104/blogs
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0MDEyNjY0NywiZXhwIjoxNzQwMjEzMDQ3fQ.3KcZkF59CUjeQd4xOi-phezB8MwTAKwLlBa-cEp3NyM
 
 ### GET /blogs/:id
 GET http://localhost:2104/blogs/4
@@ -32,12 +33,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3
 ### POST /blogs
 POST http://localhost:2104/blogs
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MjI1LCJleHAiOjE3NDAyMTM2MjV9.vCz038Qc86sx5dQsAhZ4WUaSKjMqsMvxf_N2hBZZQw8
 
 {
-    "title": "New blog is being created",
-    "description": "New blog",
-    "content": "This blog is new and was created using REST Client"
+    "title": "Testing blog limit",
+    "description": "Limit test",
+    "content": "Testing if the limit attribute works in recent blog function",
+    "tags": ["Tech","Games","Siege"],
+    "image": "https://images.unsplash.com/photo-1485988412941-77a35537dae4?q=80&w=1792&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }
 
 ### PUT /blogs/:id
