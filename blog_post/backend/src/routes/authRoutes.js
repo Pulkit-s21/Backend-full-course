@@ -33,7 +33,7 @@ router.post("/register", async (req, res) => {
         title: "Blog title",
         description: "Example blog post",
         content: "This is an example blog post",
-        tags: ["Example"]
+        tags: ["Example"],
       },
     })
 
@@ -80,6 +80,11 @@ router.post("/login", async (req, res) => {
     console.error(err.message)
     res.status(503).send({ message: "Something went wrong!!" })
   }
+})
+
+// logout
+router.post("/logout", async (req, res) => {
+  res.json({ message: "Logged out successfully" })
 })
 
 export default router
