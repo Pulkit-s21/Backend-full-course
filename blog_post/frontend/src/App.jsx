@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App
+
+// TODO: Create user profile drop down from https://tailgrids.com/react/components/account-dropdown
+// TODO: Create a logout api
+// TODO: Create login & register pages
