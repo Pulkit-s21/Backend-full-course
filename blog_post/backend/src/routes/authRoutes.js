@@ -2,24 +2,26 @@ import { Router } from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import prisma from "../prismaClient.js"
+import authMiddleWare from "../middleware/authMiddleware.js"
 
 const router = Router()
 
 // register
 router.post("/register", async (req, res) => {
   try {
-    const { username, password } = req.body
+    const { username, email, password } = req.body
 
-    if (!username || !password)
+    if (!username || !email || !password)
       return res
         .status(404)
-        .send({ message: "Username and password are required" })
+        .send({ message: "Username, email and password are required" })
 
     const hashedPswrd = bcrypt.hashSync(password, 8) // hashing pswrd for security
 
     const user = await prisma.users.create({
       data: {
         username,
+        email,
         password: hashedPswrd,
       },
     })
@@ -52,15 +54,15 @@ router.post("/register", async (req, res) => {
 // login
 router.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    if (!username || !password)
+    if (!email || !password)
       return res
         .status(404)
-        .send({ message: "Username and password are required" })
+        .send({ message: "Email and password are required" })
 
     const user = await prisma.users.findUnique({
-      where: { username },
+      where: { email },
     })
 
     if (!user) return res.status(404).send({ message: "User not found!!" })
@@ -82,9 +84,27 @@ router.post("/login", async (req, res) => {
   }
 })
 
-// logout
-router.post("/logout", async (req, res) => {
-  res.json({ message: "Logged out successfully" })
+// user details
+router.get("/users/:id", authMiddleWare, async (req, res) => {
+  const { id } = req.params
+  try {
+    const user = await prisma.users.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+      },
+    })
+
+    if (!user) return res.status(404).json({ message: "User not found" })
+
+    return res.json(user)
+  } catch (err) {
+    console.error(err.message)
+  }
 })
 
 export default router

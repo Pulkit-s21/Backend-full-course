@@ -3,7 +3,8 @@ POST http://localhost:2104/auth/register
 Content-Type: application/json
 
 {
-    "username": "admin4@admin.com",
+    "username": "admin8",
+    "email": "admin8@admin.com",
     "password": "123456789"
 }
 
@@ -13,31 +14,32 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MDcwLCJleHAiOjE3NDAyMTM0NzB9.K5hVYPmZCQIRnJSNAVkoKqehDwqnXElWfTbGcu25iy4
 
 {
-    "username": "admin4@admin.com",
+    "username": "admin8",
+    "email": "admin8@admin.com",
     "password": "123456789"
 }
 
 ### GET /blogs/all
-GET http://localhost:2104/blogs/all?limit=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0MDEyNjY0NywiZXhwIjoxNzQwMjEzMDQ3fQ.3KcZkF59CUjeQd4xOi-phezB8MwTAKwLlBa-cEp3NyM
+GET http://localhost:2104/home/all?limit=3
 
 
 ### GET /blogs
+### for this user only
 GET http://localhost:2104/blogs
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc0MDEyNjY0NywiZXhwIjoxNzQwMjEzMDQ3fQ.3KcZkF59CUjeQd4xOi-phezB8MwTAKwLlBa-cEp3NyM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzg1NzM3LCJleHAiOjE3NDA0NzIxMzd9.fxUZp1R0QD2SZ6ttN5xp5sGz63DxwsOEDi3soEpF2s8
 
 ### GET /blogs/:id
 GET http://localhost:2104/blogs/4
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzgxMDk3LCJleHAiOjE3NDA0Njc0OTd9.CPxFIYxf-3P3a5yED2drG5lSLO0SRI1KPkQJgmn2AB8
 
 ### POST /blogs
 POST http://localhost:2104/blogs
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MjI1LCJleHAiOjE3NDAyMTM2MjV9.vCz038Qc86sx5dQsAhZ4WUaSKjMqsMvxf_N2hBZZQw8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzgxMDk3LCJleHAiOjE3NDA0Njc0OTd9.CPxFIYxf-3P3a5yED2drG5lSLO0SRI1KPkQJgmn2AB8
 
 {
-    "title": "Testing blog limit",
-    "description": "Limit test",
+    "title": "Testing new user",
+    "description": "New user test",
     "content": "Testing if the limit attribute works in recent blog function",
     "tags": ["Tech","Games","Siege"],
     "image": "https://images.unsplash.com/photo-1485988412941-77a35537dae4?q=80&w=1792&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -56,3 +58,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3
 ### DELETE /blogs/:id
 DELETE http://localhost:2104/blogs/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+
+### GET /users/id
+GET http://localhost:2104/auth/users/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzg1NzM3LCJleHAiOjE3NDA0NzIxMzd9.fxUZp1R0QD2SZ6ttN5xp5sGz63DxwsOEDi3soEpF2s8
