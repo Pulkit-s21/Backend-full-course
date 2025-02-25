@@ -43,7 +43,7 @@ export const Register = () => {
           showConfirmButton: false,
         }).then(() => {
           localStorage.setItem("token", data.token)
-          window.location.href = "/"
+          window.location.href = "/login"
         })
       }
     } catch (err) {
