@@ -1,7 +1,6 @@
 import { VerticalBlog } from "./VerticalBlog"
 import { fetchAllBlogs } from "../services/blogServices"
 import { useEffect, useState } from "react"
-import moment from "moment"
 
 export const AllBlogs = () => {
   const [blogs, setBlogs] = useState([])
@@ -32,8 +31,7 @@ export const AllBlogs = () => {
               username={blog?.user?.username?.split("@")[0]} // getting thepart before "@"
               title={blog?.title}
               description={blog?.description}
-              createdAt={moment(blog?.createdAt).fromNow()}
-              // bcz db returns in UTC format. moment library expects UTC time and converts it
+              createdAt={blog?.createdAt}
               tags={blog.tags}
             />
           )

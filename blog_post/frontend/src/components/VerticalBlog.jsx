@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import moment from "moment"
+
 export const VerticalBlog = ({
   image,
   username,
@@ -10,7 +12,7 @@ export const VerticalBlog = ({
   return (
     <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-t-2xl">
       <img
-        className="hover:scale-105 transition-all duration-500"
+        className="hover:scale-100 transition-all duration-500 max-w-3xl"
         src={image}
         alt="Blog Image"
       />
@@ -19,7 +21,7 @@ export const VerticalBlog = ({
       <div className="flex gap-2">
         <p>{username}</p>
         <p>&bull;</p>
-        <p className="text-slate-500">{createdAt}</p>
+        <p className="text-slate-500">{moment(createdAt).fromNow()}</p>
       </div>
 
       {/* blog info */}

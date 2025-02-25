@@ -35,7 +35,7 @@ export const HorizontalBlog = ({
             return (
               <p
                 key={idx}
-                className="border-2 border-slate-500 rounded-xl px-3 xl:text-xs tracking-widest font-medium"
+                className="border-2 rounded-xl px-3 xl:text-xs tracking-widest font-medium hover:text-gray-800 hover:border-slate-500 transition-all duration-200 cursor-pointer"
               >
                 {tag}
               </p>

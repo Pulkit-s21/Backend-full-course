@@ -1,7 +1,8 @@
 import { HorizontalBlog } from "./HorizontalBlog"
 import { VerticalBlog } from "./VerticalBlog"
-import { fetchRecentBlogs } from "../services/blogServices"
+import { fetchAllBlogs } from "../services/blogServices"
 import { useState, useEffect } from "react"
+// import { UserContext } from "../helpers/UserContext"
 import moment from "moment"
 
 export const Recentblog = () => {
@@ -9,7 +10,7 @@ export const Recentblog = () => {
 
   const getRecentBlogs = async () => {
     try {
-      const data = await fetchRecentBlogs(3)
+      const data = await fetchAllBlogs(3)
       setBlogs(data)
     } catch (err) {
       console.error(err.message)
@@ -33,7 +34,7 @@ export const Recentblog = () => {
               username={blogs[0]?.user?.username?.split("@")[0]} // getting the part before "@"
               title={blogs[0]?.title}
               description={blogs[0]?.description}
-              createdAt={moment(blogs[0]?.createdAt).fromNow()}
+              createdAt={blogs[0]?.createdAt}
               tags={blogs[0].tags}
             />
           )}
