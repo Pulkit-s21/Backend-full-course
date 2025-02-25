@@ -25,8 +25,6 @@ export const login = async (userData) => {
       },
     })
 
-    if (res.data.token) localStorage.setItem("token", res.data.token)
-
     return res.data
   } catch (err) {
     console.error(err.message)
@@ -34,12 +32,16 @@ export const login = async (userData) => {
   }
 }
 
-// logout
-export const logout = () => {
+// user details
+export const getUserDetails = async (id, token) => {
   try {
-    // await axios.post(`${baseUrl}/auth/logout`)
-    localStorage.removeItem("token")
-    window.location.href = "/login"
+    const res = await axios.get(`${baseUrl}/auth/users/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+    })
+
+    return res.data
   } catch (err) {
     console.error(err.message)
     throw err
