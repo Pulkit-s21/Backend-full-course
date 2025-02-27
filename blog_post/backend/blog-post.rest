@@ -1,11 +1,12 @@
 ### POST /auth/register
 POST http://localhost:2104/auth/register
-Content-Type: application/json
+Content-Type: multipart/form-data
 
 {
-    "username": "admin8",
-    "email": "admin8@admin.com",
-    "password": "123456789"
+    "username": "admin",
+    "email": "admin@admin.com",
+    "password": "123456789",
+    "image": ""
 }
 
 ### POST /auth/login
@@ -14,8 +15,8 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MDcwLCJleHAiOjE3NDAyMTM0NzB9.K5hVYPmZCQIRnJSNAVkoKqehDwqnXElWfTbGcu25iy4
 
 {
-    "username": "admin8",
-    "email": "admin8@admin.com",
+    "username": "admin",
+    "email": "admin@admin.com",
     "password": "123456789"
 }
 
@@ -26,7 +27,7 @@ GET http://localhost:2104/home/all?limit=3
 ### GET /blogs
 ### for this user only
 GET http://localhost:2104/blogs
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzg1NzM3LCJleHAiOjE3NDA0NzIxMzd9.fxUZp1R0QD2SZ6ttN5xp5sGz63DxwsOEDi3soEpF2s8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwNjczMjk3LCJleHAiOjE3NDA3NTk2OTd9.dS40NbeiN1UnKl7cgqF12BNFiyUyzc8EYG0weI03wOI
 
 ### GET /blogs/:id
 GET http://localhost:2104/blogs/4
@@ -48,11 +49,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzgx
 ### PUT /blogs/:id
 PUT http://localhost:2104/blogs/6
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwNjczMjk3LCJleHAiOjE3NDA3NTk2OTd9.dS40NbeiN1UnKl7cgqF12BNFiyUyzc8EYG0weI03wOI
 
 {
     "title": "Edited the title for this blog 2",
     "description": "Edited description"
+
 }
 
 ### DELETE /blogs/:id
@@ -60,5 +62,5 @@ DELETE http://localhost:2104/blogs/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3NjIzLCJleHAiOjE3NDAxMTQwMjN9.CDkeAMvpnB6LBnRFqZqXnSOsxJvCbXvxXtUonYjxPR8
 
 ### GET /users/id
-GET http://localhost:2104/auth/users/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQwMzg1NzM3LCJleHAiOjE3NDA0NzIxMzd9.fxUZp1R0QD2SZ6ttN5xp5sGz63DxwsOEDi3soEpF2s8
+GET http://localhost:2104/auth/users/2
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzQwNjczNzMzLCJleHAiOjE3NDA3NjAxMzN9.-wgoag3COiGisEb_buGINl-1lu9QI7pMUWrvOiUx52w
