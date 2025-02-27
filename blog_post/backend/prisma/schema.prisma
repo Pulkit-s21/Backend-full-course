@@ -18,6 +18,7 @@ model Users{
     username            String          @unique
     email               String          @unique
     password            String
+    image               String?
     blog                Blog[]
 }
 
