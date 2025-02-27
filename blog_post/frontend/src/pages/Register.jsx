@@ -8,6 +8,7 @@ export const Register = () => {
     username: "",
     email: "",
     password: "",
+    image: null, // Change from "" to null to store the File object
   })
 
   const [confirmPswrd, setConfirmPswrd] = useState("")
@@ -23,8 +24,19 @@ export const Register = () => {
     setConfirmPswrd(e.target.value)
   }
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setFormData({
+        ...formData,
+        image: file,
+      })
+    }
+  }
+
   const signUp = async (e) => {
     e.preventDefault()
+
     if (confirmPswrd !== formData.password) {
       return Swal.fire({
         icon: "error",
@@ -32,8 +44,17 @@ export const Register = () => {
         text: "Password doesn't match",
       })
     }
+
     try {
-      const data = await register(formData)
+      // Convert formData into FormData object for file upload
+      const formDataToSend = new FormData()
+      formDataToSend.append("username", formData.username)
+      formDataToSend.append("email", formData.email)
+      formDataToSend.append("password", formData.password)
+      formDataToSend.append("image", formData.image) // Ensure image is sent
+
+      const data = await register(formDataToSend)
+
       if (data.token) {
         Swal.fire({
           icon: "success",
@@ -55,7 +76,7 @@ export const Register = () => {
     <div className="grid grid-cols-1 gap-4">
       <h3>Register</h3>
       <form onSubmit={signUp} className="grid grid-cols-1 gap-4">
-        <label htmlFor="">Username</label>
+        <label>Username</label>
         <input
           type="text"
           placeholder="Enter your username"
@@ -64,7 +85,7 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="">Email</label>
+        <label>Email</label>
         <input
           type="email"
           placeholder="Enter your email"
@@ -73,7 +94,7 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="">Password</label>
+        <label>Password</label>
         <input
           type="password"
           placeholder="Enter your password"
@@ -82,7 +103,7 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="">Confirm Password</label>
+        <label>Confirm Password</label>
         <input
           type="password"
           placeholder="Confirm your password"
@@ -90,6 +111,8 @@ export const Register = () => {
           onChange={handleConfirmPswrdChange}
           required
         />
+        <label>Profile Image</label>
+        <input type="file" name="image" onChange={handleImageChange} required />
 
         <button className="bg-blue-900 px-4 py-0.5 w-fit text-white rounded-2xl cursor-pointer border-2 border-transparent hover:bg-white hover:text-blue-900 hover:border-blue-900 transition-all duration-300">
           Sign up
