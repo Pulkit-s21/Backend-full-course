@@ -2,7 +2,6 @@
 import { createContext, useState, useEffect } from "react"
 import { jwtDecode } from "jwt-decode"
 import { getUserDetails } from "../services/authServices"
-import { Navigate } from "react-router-dom"
 
 // Create UserContext
 export const UserContext = createContext(null)
@@ -35,15 +34,11 @@ export const UserProvider = ({ children }) => {
     }
   }, [])
 
-  const navigateUser = () => {
-    return <Navigate to={"/login"} replace />
-  }
-
   const logout = () => {
     setUser(null)
     setIsLoggedIn(false)
     localStorage.removeItem("token")
-    navigateUser()
+    window.location.href = "/login"
   }
 
   return (
