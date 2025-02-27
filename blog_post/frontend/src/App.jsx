@@ -26,7 +26,9 @@ function App() {
 
 export default App
 
-// TODO: Create user profile dropdown-https://tailgrids.com/react/components/account-dropdown: DONE
-// TODO: Create a logout api: DONE
-// TODO: Create login & register pages: DONE
-// TODO: Create profile page and make it authenticated route: DONE
+// : Create user profile dropdown: DONE
+// : Create a logout api: DONE
+// : Create login & register pages: DONE
+// : Create profile page and make it authenticated route: DONE
+// TODO: Create option to add a blog from profile page
+// TODO: Create option to delete a blog BUT only if you are logged in
