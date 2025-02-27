@@ -4,11 +4,7 @@ import baseUrl from "../utils/baseUrl"
 // register
 export const register = async (userData) => {
   try {
-    const res = await axios.post(`${baseUrl}/auth/register`, userData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    const res = await axios.post(`${baseUrl}/auth/register`, userData)
     return res.data
   } catch (err) {
     console.error(err.message)
