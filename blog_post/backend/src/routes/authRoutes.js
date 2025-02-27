@@ -3,11 +3,12 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import prisma from "../prismaClient.js"
 import authMiddleWare from "../middleware/authMiddleware.js"
+import { upload } from "../upload.js"
 
 const router = Router()
 
 // register
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single("image"), async (req, res) => {
   try {
     const { username, email, password } = req.body
 
@@ -22,6 +23,7 @@ router.post("/register", async (req, res) => {
       data: {
         username,
         email,
+        image: req.file ? `/uploads/${req.file.filename}` : null,
         password: hashedPswrd,
       },
     })
@@ -96,6 +98,7 @@ router.get("/users/:id", authMiddleWare, async (req, res) => {
         id: true,
         username: true,
         email: true,
+        image: true,
       },
     })
 

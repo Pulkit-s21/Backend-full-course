@@ -20,6 +20,9 @@ app.use(
 // middleware
 app.use(json())
 
+// Serve static files
+app.use("/uploads", express.static("uploads"))
+
 // Routes
 app.use("/auth", authRoutes)
 app.use("/blogs", authMiddleWare, blogRoutes)
