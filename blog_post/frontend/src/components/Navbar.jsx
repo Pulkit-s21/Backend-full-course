@@ -3,6 +3,7 @@ import { Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../helpers/UserContext"
 import Swal from "sweetalert2"
+import baseUrl from "../utils/baseUrl"
 
 export const Navbar = () => {
   const { user, logout, isLoggedIn } = useContext(UserContext)
@@ -67,8 +68,12 @@ export const Navbar = () => {
                   <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center group">
                     <img
                       className="w-12 h-12 object-cover group-hover:opacity-80"
-                      src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D"
-                      alt="User Profile"
+                      src={
+                        user
+                          ? `${baseUrl}${user.image}`
+                          : "https://images.unsplash.com/photo-1683322001857-f4d932a40672?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      }
+                      alt="User"
                     />
                   </div>
 
@@ -140,7 +145,6 @@ export const Navbar = () => {
                         showConfirmButton: false,
                       }).then(() => {
                         logout()
-                        window.location.reload() // refresh after user logs out
                       })
                     } else {
                       Swal.fire({
