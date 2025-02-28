@@ -90,6 +90,9 @@ router.post("/login", async (req, res) => {
 router.get("/users/:id", authMiddleWare, async (req, res) => {
   const { id } = req.params
   try {
+    if (req.userId !== parseInt(id)) {
+      return res.status(503).json({ message: "Forbidden: Access Denied!!" })
+    }
     const user = await prisma.users.findUnique({
       where: {
         id: parseInt(id),
