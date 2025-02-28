@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 import { createBlog } from "../services/blogServices"
+import { Editor } from "primereact/editor"
+import { TagPicker } from "rsuite"
+import "rsuite/TagInput/styles/index.css"
 import Swal from "sweetalert2"
 
 export const BlogForm = ({ onSuccess }) => {
@@ -29,13 +32,6 @@ export const BlogForm = ({ onSuccess }) => {
         image: file,
       })
     }
-  }
-
-  const handleTagsChange = (e) => {
-    setBlogData({
-      ...blogData,
-      tags: [...(blogData.tags || []), e.target.value],
-    })
   }
 
   const newBlog = async (e) => {
@@ -98,24 +94,36 @@ export const BlogForm = ({ onSuccess }) => {
         required
       />
       <label htmlFor="">Content</label>
-      <textarea
+      <Editor
+        value={blogData.content}
+        onTextChange={(e) => setBlogData({ ...blogData, content: e.htmlValue })}
+        style={{ height: "fit-content" }}
+      />
+      {/* <textarea
         name="content"
         placeholder="Content of the blog"
         className="border-2 border-slate-100 py-1 px-2 outline-none placeholder:text-sm"
         onChange={handleChange}
         id=""
-      />
+      />  */}
       <label htmlFor="">Tags</label>
-      <input
+      <TagPicker
+        creatable
+        data={blogData.tags.map((tag) => ({ label: tag, value: tag }))}
+        value={blogData.tags}
+        onChange={(newTags) => setBlogData({ ...blogData, tags: newTags })}
+        placeholder="Type and press Enter"
+      />
+      {/* <input
         type="text"
         name="tags"
         placeholder="Tags for the blog"
         className="border-2 border-slate-100 py-1 px-2 outline-none placeholder:text-sm"
         onChange={handleTagsChange}
         required
-      />
-      <button className="bg-blue-600 w-fit px-4 py-1 text-white rounded-2xl cursor-pointer">
-        Create
+      /> */}
+      <button className="bg-blue-600 hover:bg-red-400 w-fit px-6 py-1 text-white rounded-2xl cursor-pointer">
+        Post
       </button>
     </form>
   )
