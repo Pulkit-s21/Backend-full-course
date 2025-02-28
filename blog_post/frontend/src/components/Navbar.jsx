@@ -89,31 +89,40 @@ export const Navbar = () => {
                 </div>
               </MenuHandler>
               <MenuList>
-                <MenuItem>
-                  <Link
-                    className="flex items-center gap-2 text-neutral-500 hover:text-black transition-all duration-200"
-                    to={"/profile"}
+                <MenuItem
+                  onClick={() => {
+                    if (!isLoggedIn) {
+                      Swal.fire({
+                        title: "Please login!",
+                        icon: "info",
+                        timer: 2000,
+                        showConfirmButton: false,
+                      }).then(() => {
+                        navigate("/login")
+                      })
+                    } else {
+                      navigate("/profile")
+                    }
+                  }}
+                  className="flex items-center gap-2 text-neutral-500 hover:text-black transition-all duration-200"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-user-pen"
                   >
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-user-pen"
-                      >
-                        <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
-                        <path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-                        <circle cx="10" cy="7" r="4" />
-                      </svg>
-                    </span>{" "}
-                    Profile
-                  </Link>
+                    <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
+                    <path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+                    <circle cx="10" cy="7" r="4" />
+                  </svg>{" "}
+                  Profile
                 </MenuItem>
                 <MenuItem className="flex items-center gap-2 text-neutral-500 hover:text-black transition-all duration-200">
                   <span>
