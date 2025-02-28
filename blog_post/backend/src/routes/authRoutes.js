@@ -1,9 +1,9 @@
 import { Router } from "express"
+import { upload } from "../upload.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import prisma from "../prismaClient.js"
 import authMiddleWare from "../middleware/authMiddleware.js"
-import { upload } from "../upload.js"
 
 const router = Router()
 
