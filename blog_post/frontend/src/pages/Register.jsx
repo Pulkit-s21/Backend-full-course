@@ -8,7 +8,7 @@ export const Register = () => {
     username: "",
     email: "",
     password: "",
-    image: null, // Change from "" to null to store the File object
+    image: null,
   })
 
   const [confirmPswrd, setConfirmPswrd] = useState("")
@@ -51,7 +51,7 @@ export const Register = () => {
       formDataToSend.append("username", formData.username)
       formDataToSend.append("email", formData.email)
       formDataToSend.append("password", formData.password)
-      formDataToSend.append("image", formData.image) // Ensure image is sent
+      formDataToSend.append("image", formData.image)
 
       const data = await register(formDataToSend)
 

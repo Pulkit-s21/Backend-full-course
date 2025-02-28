@@ -22,25 +22,29 @@ export const Profile = () => {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-3">
+    <div className="absolute grid grid-cols-1 gap-4 px-6">
       <h3 className="text-3xl">
-        Weclome <span>{user?.username}</span>{" "}
-        <div className="grid grid-cols-3 gap-3">
-          {blogs.map((blog) => {
-            return (
-              <VerticalBlog
-                key={blog?.id}
-                image={blog?.image}
-                username={user?.username}
-                createdAt={blog?.createdAt}
-                title={blog?.title}
-                description={blog?.description}
-                tags={blog?.tags}
-              />
-            )
-          })}
-        </div>
+        Weclome <span className="capitalize font-bold">{user?.username}</span>{" "}
       </h3>
+      <div className="grid grid-cols-3 gap-3">
+        {blogs.map((blog) => {
+          return (
+            <VerticalBlog
+              key={blog?.id}
+              image={blog?.image}
+              username={user?.username}
+              createdAt={blog?.createdAt}
+              title={blog?.title}
+              description={blog?.description}
+              tags={blog?.tags}
+            />
+          )
+        })}
+      </div>
+
+      <div className="relative bottom-0">
+        <p>Hello</p>
+      </div>
     </div>
   )
 }
