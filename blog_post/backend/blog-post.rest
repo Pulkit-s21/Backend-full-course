@@ -1,23 +1,34 @@
 ### POST /auth/register
 POST http://localhost:2104/auth/register
-Content-Type: multipart/form-data
+Content-Type: multipart/form-data; boundary=boundary123
 
-{
-    "username": "admin",
-    "email": "admin@admin.com",
-    "password": "123456789",
-    "image": ""
-}
+--boundary123
+Content-Disposition: form-data; name="username"
+
+admin2
+--boundary123
+Content-Disposition: form-data; name="email"
+
+admin2@admin.com
+--boundary123
+Content-Disposition: form-data; name="password"
+
+123
+--boundary123
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpeg
+
+< ./uploads/1740672476815.jpeg
+--boundary123--
 
 ### POST /auth/login
 POST http://localhost:2104/auth/login
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzQwMTI3MDcwLCJleHAiOjE3NDAyMTM0NzB9.K5hVYPmZCQIRnJSNAVkoKqehDwqnXElWfTbGcu25iy4
 
 {
-    "username": "admin",
-    "email": "admin@admin.com",
-    "password": "123456789"
+    "username": "admin2",
+    "email": "admin2@admin.com",
+    "password": "123"
 }
 
 ### GET /blogs/all
@@ -63,4 +74,4 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzQwMDI3
 
 ### GET /users/id
 GET http://localhost:2104/auth/users/2
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzQwNjczNzMzLCJleHAiOjE3NDA3NjAxMzN9.-wgoag3COiGisEb_buGINl-1lu9QI7pMUWrvOiUx52w
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzQwNzE5OTg5LCJleHAiOjE3NDA4MDYzODl9.RlUpoWOeRC69ewfTlTv39E1h4SryLiMlRmDg6_syoHk
