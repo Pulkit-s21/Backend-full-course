@@ -52,7 +52,7 @@ export const BlogForm = ({ onSuccess }) => {
       if (data) {
         Swal.fire({
           icon: "success",
-          title: "Blog created",
+          title: "Blog posted",
           timer: 1500,
           showConfirmButton: false,
         }).then(() => {
