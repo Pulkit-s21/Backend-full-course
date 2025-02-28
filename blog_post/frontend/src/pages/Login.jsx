@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { login as loginApi } from "../services/authServices"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
+import { UserContext } from "../helpers/UserContext"
 
 export const Login = () => {
+  const { user } = useContext(UserContext)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,7 +26,7 @@ export const Login = () => {
         Swal.fire({
           icon: "success",
           title: "Welcome",
-          text: "Logged in",
+          text: `${user.username}`,
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
