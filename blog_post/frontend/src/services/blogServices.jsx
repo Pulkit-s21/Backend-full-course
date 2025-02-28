@@ -32,3 +32,17 @@ export const fetchUserBlogs = async (token) => {
     throw err
   }
 }
+
+// create new blog
+export const createBlog = async (token, blogData) => {
+  try {
+    const res = await axios.post(`${baseUrl}/blogs`, blogData, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    return res.data
+  } catch (err) {
+    console.error(err.message)
+  }
+}
