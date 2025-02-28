@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { upload } from "../upload.js"
 import prisma from "../prismaClient.js"
 
 const router = Router()
@@ -52,11 +53,15 @@ router.get("/:id", async (req, res) => {
 })
 
 // create blog
-router.post("/", async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const { title, description, content, tags, image } = req.body
+    const { title, description, content, tags } = req.body
 
-    if (!title || !description || !content || !tags || !image)
+    if (!req.file) {
+      return res.status(404).json({ message: "Image is required" })
+    }
+
+    if (!title || !description || !content || !tags.length)
       return res.status(400).json({
         message: "Title, description, content, image and tags are required",
       })
@@ -67,7 +72,7 @@ router.post("/", async (req, res) => {
         description,
         content,
         tags,
-        image,
+        image: req.file ? `/uploads/${req.file.filename}` : null,
         userId: req.userId,
       },
     })
