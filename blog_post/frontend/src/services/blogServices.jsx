@@ -2,7 +2,7 @@ import axios from "axios"
 import baseUrl from "../utils/baseUrl"
 
 // fetch all blogs
-export const fetchAllBlogs = async (limit = 3) => {
+export const fetchAllBlogs = async (limit) => {
   try {
     const res = await axios.get(`${baseUrl}/home/all`, {
       params: {
