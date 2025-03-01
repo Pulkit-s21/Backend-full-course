@@ -9,11 +9,7 @@ export const HorizontalBlog = ({
 }) => {
   return (
     <div className="flex flex-row gap-5 rounded-tl-lg rounded-bl-lg overflow-hidden">
-      <img
-        className="w-96 hover:scale-105 transition-all duration-500"
-        src={image}
-        alt="Blog Image"
-      />
+      <img className="w-96" src={image} alt="Blog Image" />
 
       <div className="flex flex-col gap-2">
         {/* writer div */}

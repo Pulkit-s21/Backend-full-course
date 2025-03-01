@@ -4,6 +4,7 @@ import { fetchAllBlogs } from "../services/blogServices"
 import { useState, useEffect } from "react"
 // import { UserContext } from "../helpers/UserContext"
 import moment from "moment"
+import baseUrl from "../utils/baseUrl"
 
 export const Recentblog = () => {
   const [blogs, setBlogs] = useState([])
@@ -30,7 +31,11 @@ export const Recentblog = () => {
           {blogs.length > 0 && (
             <VerticalBlog
               key={blogs[0]?.id}
-              image={blogs[0]?.image}
+              image={
+                blogs[0]?.image?.startsWith("http")
+                  ? blogs[0]?.image
+                  : `${baseUrl}${blogs[0]?.image}`
+              }
               username={blogs[0]?.user?.username?.split("@")[0]} // getting the part before "@"
               title={blogs[0]?.title}
               description={blogs[0]?.description}
@@ -44,7 +49,11 @@ export const Recentblog = () => {
             return (
               <HorizontalBlog
                 key={blog?.id}
-                image={blog?.image}
+                image={
+                  blog?.image?.startsWith("http")
+                    ? blog?.image
+                    : `${baseUrl}${blog?.image}`
+                }
                 username={blog?.user?.username?.split("@")[0]} // getting the part before "@"
                 title={blog?.title}
                 description={blog?.description}

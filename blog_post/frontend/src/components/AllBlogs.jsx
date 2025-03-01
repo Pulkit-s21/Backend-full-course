@@ -1,6 +1,7 @@
 import { VerticalBlog } from "./VerticalBlog"
 import { fetchAllBlogs } from "../services/blogServices"
 import { useEffect, useState } from "react"
+import baseUrl from "../utils/baseUrl"
 
 export const AllBlogs = () => {
   const [blogs, setBlogs] = useState([])
@@ -27,7 +28,11 @@ export const AllBlogs = () => {
           return (
             <VerticalBlog
               key={blog?.id}
-              image={blog?.image}
+              image={
+                blog?.image?.startsWith("http")
+                  ? blog?.image
+                  : `${baseUrl}${blog?.image}`
+              }
               username={blog?.user?.username?.split("@")[0]} // getting thepart before "@"
               title={blog?.title}
               description={blog?.description}

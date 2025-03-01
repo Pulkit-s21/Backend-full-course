@@ -61,7 +61,11 @@ export const Profile = () => {
           return (
             <VerticalBlog
               key={blog?.id}
-              image={`${baseUrl}${blog?.image}`}
+              image={
+                blog?.image?.startsWith("http")
+                  ? blog?.image
+                  : `${baseUrl}${blog?.image}`
+              }
               username={user?.username}
               createdAt={blog?.createdAt}
               title={blog?.title}

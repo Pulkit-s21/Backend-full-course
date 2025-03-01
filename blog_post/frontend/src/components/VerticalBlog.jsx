@@ -31,7 +31,7 @@ export const VerticalBlog = ({
       </div>
 
       {/* tags */}
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row items-end gap-2">
         {tags.map((tag, idx) => {
           return (
             <p
