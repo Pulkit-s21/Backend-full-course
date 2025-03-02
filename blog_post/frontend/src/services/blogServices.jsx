@@ -46,3 +46,17 @@ export const createBlog = async (token, blogData) => {
     console.error(err.message)
   }
 }
+
+// delete blog
+export const deleteBlog = async (token, blogId) => {
+  try {
+    const res = await axios.delete(`${baseUrl}/blogs/${blogId}`, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    return res.data
+  } catch (err) {
+    console.error(err.message)
+  }
+}
