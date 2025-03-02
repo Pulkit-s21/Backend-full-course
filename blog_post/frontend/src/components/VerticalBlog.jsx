@@ -47,7 +47,20 @@ export const VerticalBlog = ({
         </div>
 
         <button
-          onClick={() => removeBlog(id)}
+          onClick={() =>
+            Swal.fire({
+              icon: "warning",
+              title: "Are you sure you want to delete it ?",
+              showCancelButton: true,
+              cancelButtonColor: "orange",
+              confirmButtonText: "Yes",
+              confirmButtonColor: "red",
+            }).then((res) => {
+              if (res.isConfirmed) {
+                removeBlog(id)
+              }
+            })
+          }
           className="bg-red-400 w-fit px-6 py-1 text-white rounded-2xl cursor-pointer"
         >
           Delete
