@@ -61,6 +61,7 @@ export const Profile = () => {
           return (
             <VerticalBlog
               key={blog?.id}
+              id={blog?.id}
               image={
                 blog?.image?.startsWith("http")
                   ? blog?.image
