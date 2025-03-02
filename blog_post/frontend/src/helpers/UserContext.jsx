@@ -12,26 +12,27 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token")
-    if (!storedToken) {
-      setIsLoggedIn(false)
-      setLoading(false)
-      return
+    const initializeUser = async () => {
+      const storedToken = localStorage.getItem("token")
+      if (!storedToken) {
+        setIsLoggedIn(false)
+        setLoading(false)
+        return
+      }
+      try {
+        const decodedUser = jwtDecode(storedToken)
+        const userData = await getUserDetails(decodedUser.id, storedToken)
+        setUser(userData)
+        setIsLoggedIn(true)
+      } catch (error) {
+        console.error("Invalid token", error)
+        logout()
+      } finally {
+        setLoading(false)
+      }
     }
-    try {
-      const decodedUser = jwtDecode(storedToken)
-      getUserDetails(decodedUser.id, storedToken)
-        .then((userData) => {
-          setUser(userData)
-        })
-        .catch((err) => console.error(err.message))
-      setIsLoggedIn(true)
-    } catch (error) {
-      console.error("Invalid token", error)
-      logout()
-    } finally {
-      setLoading(false)
-    }
+
+    initializeUser()
   }, [])
 
   const logout = () => {
@@ -42,7 +43,9 @@ export const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, logout, isLoggedIn, loading }}>
+    <UserContext.Provider
+      value={{ user, setUser, logout, isLoggedIn, loading }}
+    >
       {!loading && children}
     </UserContext.Provider>
   )

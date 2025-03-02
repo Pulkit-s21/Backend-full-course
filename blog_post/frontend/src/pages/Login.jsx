@@ -1,11 +1,12 @@
 import { useContext, useState } from "react"
-import { login as loginApi } from "../services/authServices"
+import { getUserDetails, login as loginApi } from "../services/authServices"
 import { Link } from "react-router-dom"
-import Swal from "sweetalert2"
 import { UserContext } from "../helpers/UserContext"
+import Swal from "sweetalert2"
+import { jwtDecode } from "jwt-decode"
 
 export const Login = () => {
-  const { user } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,10 +24,15 @@ export const Login = () => {
     try {
       const data = await loginApi(formData)
       if (data.token) {
+        // need to do this to update user info on login
+        // UserContext doesnt re-render on changes in localStorage
+        const decodedUser = jwtDecode(data.token)
+        const userData = await getUserDetails(decodedUser.id, data.token)
+        setUser(userData)
         Swal.fire({
           icon: "success",
           title: "Welcome",
-          text: `${user.username}`,
+          text: `${userData.username}`,
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
