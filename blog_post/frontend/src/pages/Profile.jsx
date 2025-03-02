@@ -57,24 +57,30 @@ export const Profile = () => {
         Weclome <span className="capitalize font-bold">{user?.username}</span>{" "}
       </h3>
       <div className="grid grid-cols-3 gap-3">
-        {blogs.map((blog) => {
-          return (
-            <VerticalBlog
-              key={blog?.id}
-              id={blog?.id}
-              image={
-                blog?.image?.startsWith("http")
-                  ? blog?.image
-                  : `${baseUrl}${blog?.image}`
-              }
-              username={user?.username}
-              createdAt={blog?.createdAt}
-              title={blog?.title}
-              description={blog?.description}
-              tags={blog?.tags}
-            />
-          )
-        })}
+        {blogs.length > 0 ? (
+          blogs.map((blog) => {
+            return (
+              <VerticalBlog
+                key={blog?.id}
+                id={blog?.id}
+                image={
+                  blog?.image?.startsWith("http")
+                    ? blog?.image
+                    : `${baseUrl}${blog?.image}`
+                }
+                username={user?.username}
+                createdAt={blog?.createdAt}
+                title={blog?.title}
+                description={blog?.description}
+                tags={blog?.tags}
+              />
+            )
+          })
+        ) : (
+          <h1 className="text-5xl text-red-500 font-bold">
+            No blogs to display yet
+          </h1>
+        )}
       </div>
 
       <button
