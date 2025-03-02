@@ -28,9 +28,10 @@ export const Recentblog = () => {
 
       <div className="flex flex-col lg:flex-row gap-4 w-full">
         <div className="flex-1">
-          {blogs.length > 0 && (
+          {blogs.length > 0 ? (
             <VerticalBlog
               key={blogs[0]?.id}
+              id={blogs[0]?.id}
               image={
                 blogs[0]?.image?.startsWith("http")
                   ? blogs[0]?.image
@@ -42,7 +43,7 @@ export const Recentblog = () => {
               createdAt={blogs[0]?.createdAt}
               tags={blogs[0].tags}
             />
-          )}
+          ) : <h1 className="text-5xl text-red-500 font-bold">No blogs to display yet</h1>}
         </div>
         <div className="flex-1 flex flex-col gap-6">
           {blogs.slice(1).map((blog) => {

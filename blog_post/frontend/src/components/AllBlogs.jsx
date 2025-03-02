@@ -24,24 +24,30 @@ export const AllBlogs = () => {
       <h3 className="xl:text-4xl font-semibold">All blog posts</h3>
 
       <div className="grid lg:grid-cols-3 w-full gap-6 space-y-3 py-4">
-        {blogs.map((blog) => {
-          return (
-            <VerticalBlog
-              key={blog?.id}
-              id={blog?.id}
-              image={
-                blog?.image?.startsWith("http")
-                  ? blog?.image
-                  : `${baseUrl}${blog?.image}`
-              }
-              username={blog?.user?.username?.split("@")[0]} // getting thepart before "@"
-              title={blog?.title}
-              description={blog?.description}
-              createdAt={blog?.createdAt}
-              tags={blog.tags}
-            />
-          )
-        })}
+        {blogs.length > 0 ? (
+          blogs.map((blog) => {
+            return (
+              <VerticalBlog
+                key={blog?.id}
+                id={blog?.id}
+                image={
+                  blog?.image?.startsWith("http")
+                    ? blog?.image
+                    : `${baseUrl}${blog?.image}`
+                }
+                username={blog?.user?.username?.split("@")[0]} // getting thepart before "@"
+                title={blog?.title}
+                description={blog?.description}
+                createdAt={blog?.createdAt}
+                tags={blog.tags}
+              />
+            )
+          })
+        ) : (
+          <h1 className="text-5xl text-red-500 font-bold">
+            No blogs to display yet
+          </h1>
+        )}
       </div>
     </div>
   )
