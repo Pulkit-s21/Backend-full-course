@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import moment from "moment"
+import { deleteBlog } from "../services/blogServices"
+import Swal from "sweetalert2"
 
 export const VerticalBlog = ({
   image,
@@ -8,7 +10,26 @@ export const VerticalBlog = ({
   title,
   description,
   tags,
+  id,
 }) => {
+  const token = localStorage.getItem("token")
+
+  const removeBlog = async (id) => {
+    try {
+      const data = await deleteBlog(token, id)
+      if (data) {
+        Swal.fire({
+          icon: "success",
+          title: "Blog Deleted",
+          timer: 2000,
+          showConfirmButton: false,
+        })
+      }
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
   return (
     <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-t-2xl">
       <img
@@ -18,10 +39,19 @@ export const VerticalBlog = ({
       />
 
       {/* writer div */}
-      <div className="flex gap-2">
-        <p>{username}</p>
-        <p>&bull;</p>
-        <p className="text-slate-500">{moment(createdAt).fromNow()}</p>
+      <div className="flex justify-between pr-4">
+        <div className="flex gap-2">
+          <p>{username}</p>
+          <p>&bull;</p>
+          <p className="text-slate-500">{moment(createdAt).fromNow()}</p>
+        </div>
+
+        <button
+          onClick={() => removeBlog(id)}
+          className="bg-red-400 w-fit px-6 py-1 text-white rounded-2xl cursor-pointer"
+        >
+          Delete
+        </button>
       </div>
 
       {/* blog info */}
@@ -31,7 +61,7 @@ export const VerticalBlog = ({
       </div>
 
       {/* tags */}
-      <div className="flex flex-row items-end gap-2">
+      <div className="flex flex-row flex-wrap items-end gap-2">
         {tags.map((tag, idx) => {
           return (
             <p
