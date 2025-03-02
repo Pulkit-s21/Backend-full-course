@@ -35,7 +35,7 @@ export const VerticalBlog = ({
   return (
     <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-t-2xl">
       <img
-        className="hover:scale-100 transition-all duration-500 max-w-3xl"
+        className="hover:scale-100 transition-all duration-500 max-w-4xl"
         src={image}
         alt="Blog Image"
       />

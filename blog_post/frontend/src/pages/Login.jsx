@@ -2,8 +2,8 @@ import { useContext, useState } from "react"
 import { getUserDetails, login as loginApi } from "../services/authServices"
 import { Link } from "react-router-dom"
 import { UserContext } from "../helpers/UserContext"
-import Swal from "sweetalert2"
 import { jwtDecode } from "jwt-decode"
+import Swal from "sweetalert2"
 
 export const Login = () => {
   const { setUser } = useContext(UserContext)
