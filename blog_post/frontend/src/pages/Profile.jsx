@@ -73,6 +73,7 @@ export const Profile = () => {
                 title={blog?.title}
                 description={blog?.description}
                 tags={blog?.tags}
+                blog={blog}
               />
             )
           })
