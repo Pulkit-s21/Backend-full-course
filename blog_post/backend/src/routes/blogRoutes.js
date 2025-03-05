@@ -85,10 +85,14 @@ router.post("/", upload.single("image"), async (req, res) => {
 })
 
 // update blog
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
   try {
-    const { title, description, content } = req.body
+    const { title, description, content, tags } = req.body
     const { id } = req.params
+
+    if (!req.file) {
+      return res.status(404).json({ message: "Image is required" })
+    }
 
     if (
       (title !== undefined && title.trim().length === 0) ||
@@ -109,6 +113,8 @@ router.put("/:id", async (req, res) => {
         title,
         description,
         content,
+        tags,
+        image: req.file ? `/uploads/${req.file.filename}` : null,
       },
     })
 
