@@ -55,7 +55,11 @@ export const Navbar = () => {
             )
           })}
 
-          <button className="lg:text-md text-neutral-700 cursor-pointer border-2 border-slate-400 px-4 rounded-lg hover:border-neutral-700 w-fit transition-all duration-200">
+          <button
+            className={`lg:text-md text-neutral-700 cursor-pointer border-2 border-slate-400 px-4 rounded-lg hover:border-neutral-700 w-fit transition-all duration-200 ${
+              isLoggedIn ? "hidden" : "block"
+            } `}
+          >
             <Link to={"/register"}>Get Started</Link>
           </button>
 
