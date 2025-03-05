@@ -76,7 +76,7 @@ export const UpdateForm = ({ onSuccess, blog, id }) => {
       className="grid grid-cols-1 gap-4 text-start"
     >
       {preview && (
-        <div className="max-w-3xl aspect-square overflow-hidden">
+        <div className="mb-4">
           <label htmlFor="">Preview</label>
           <img
             className="w-full h-full object-cover"
