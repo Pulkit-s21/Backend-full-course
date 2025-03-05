@@ -34,7 +34,7 @@ export default App
 // : Create option to delete a blog BUT only if you are logged in : DONE
 // : Create option to update a blog : DONE
 // : Create option to preview selected image : DONE
+// : Create option to add user image while registering : DONE
 // : Hide "Get started" button if loggedIn : DONE
 // : Fix "user is null" error on login page : DONE
-// : Create option to add user image while registering : DONE
 // TODO: Fix "Changing token doesnt kick user out"
