@@ -43,7 +43,11 @@ export const Recentblog = () => {
               createdAt={blogs[0]?.createdAt}
               tags={blogs[0].tags}
             />
-          ) : <h1 className="text-5xl text-red-500 font-bold">No blogs to display yet</h1>}
+          ) : (
+            <h1 className="text-5xl text-red-500 font-bold">
+              No blogs to display yet
+            </h1>
+          )}
         </div>
         <div className="flex-1 flex flex-col gap-6">
           {blogs.slice(1).map((blog) => {
