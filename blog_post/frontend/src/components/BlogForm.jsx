@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createBlog } from "../services/blogServices"
 import { Editor } from "primereact/editor"
 import { TagPicker } from "rsuite"
 import "rsuite/TagInput/styles/index.css"
 import Swal from "sweetalert2"
+import baseUrl from "../utils/baseUrl"
 
 export const BlogForm = ({ onSuccess }) => {
   const [blogData, setBlogData] = useState({
@@ -14,6 +15,8 @@ export const BlogForm = ({ onSuccess }) => {
     content: "",
     tags: [],
   })
+
+  const [preview, setPreview] = useState(blogData.image)
 
   const token = localStorage.getItem("token")
 
@@ -31,8 +34,15 @@ export const BlogForm = ({ onSuccess }) => {
         ...blogData,
         image: file,
       })
+      setPreview(URL.createObjectURL(file))
     }
   }
+
+  useEffect(() => {
+    if (blogData?.image) {
+      setPreview(`${baseUrl}${blogData.image}`)
+    }
+  }, [])
 
   const newBlog = async (e) => {
     e.preventDefault()
@@ -67,6 +77,13 @@ export const BlogForm = ({ onSuccess }) => {
 
   return (
     <form onSubmit={newBlog} className="grid grid-cols-1 gap-4 text-start">
+      {preview && (
+        <img
+          className="w-full h-full object-cover"
+          src={preview}
+          alt="Blog Image"
+        />
+      )}
       <label htmlFor="">Image</label>
       <input
         type="file"

@@ -1,21 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { updateBlog } from "../services/blogServices"
 import { Editor } from "primereact/editor"
 import { TagPicker } from "rsuite"
 import "rsuite/TagInput/styles/index.css"
 import Swal from "sweetalert2"
+import baseUrl from "../utils/baseUrl"
 
 export const UpdateForm = ({ onSuccess, blog, id }) => {
   const [blogData, setBlogData] = useState({
-    image: null,
-    title: blog?.title,
-    description: blog?.description,
-    content: blog?.content,
-    tags: blog?.tags,
+    image: blog?.image ? `${baseUrl}${blog?.image}` : null,
+    title: blog?.title || "",
+    description: blog?.description || "",
+    content: blog?.content || "",
+    tags: blog?.tags || "",
   })
 
-  console.log(id)
+  const [preview, setPreview] = useState(blogData.image)
+
+  useEffect(() => {
+    if (blog?.image) {
+      setPreview(`${baseUrl}${blog.image}`)
+    }
+  }, [blog])
 
   const handleChange = (e) => {
     setBlogData({
@@ -27,10 +34,8 @@ export const UpdateForm = ({ onSuccess, blog, id }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0]
     if (file) {
-      setBlogData({
-        ...blogData,
-        image: file,
-      })
+      setBlogData({ ...blogData, image: file })
+      setPreview(URL.createObjectURL(file)) // generate preview url
     }
   }
 
@@ -70,14 +75,31 @@ export const UpdateForm = ({ onSuccess, blog, id }) => {
       onSubmit={changeContent}
       className="grid grid-cols-1 gap-4 text-start"
     >
+      {preview && (
+        <div className="max-w-3xl aspect-square overflow-hidden">
+          <label htmlFor="">Preview</label>
+          <img
+            className="w-full h-full object-cover"
+            src={preview}
+            alt="Blog Image Preview"
+          />
+        </div>
+      )}
       <label htmlFor="">Image</label>
-      <input
-        type="file"
-        className="border-2 border-slate-100 py-1 px-2 outline-none placeholder:text-sm"
-        name="image"
-        onChange={handleImageChange}
-        required
-      />
+      <div className="flex flex-col">
+        <input
+          type="file"
+          className="border-2 border-slate-100 py-1 px-2 outline-none placeholder:text-sm"
+          name="image"
+          onChange={handleImageChange}
+          required
+        />
+        <p className="text-xs text-slate-400">
+          <span className="text-red-500 text-sm">*</span> File type input is
+          read-only, please select the image even if same
+        </p>
+      </div>
+
       <label htmlFor="">Title</label>
       <input
         type="text"
