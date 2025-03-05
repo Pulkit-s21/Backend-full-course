@@ -78,11 +78,14 @@ export const BlogForm = ({ onSuccess }) => {
   return (
     <form onSubmit={newBlog} className="grid grid-cols-1 gap-4 text-start">
       {preview && (
-        <img
-          className="w-full h-full object-cover"
-          src={preview}
-          alt="Blog Image"
-        />
+        <div className="max-w-3xl aspect-square overflow-hidden">
+          <label htmlFor="">Preview</label>
+          <img
+            className="w-full h-full object-cover"
+            src={preview}
+            alt="Blog Image Preview"
+          />
+        </div>
       )}
       <label htmlFor="">Image</label>
       <input
