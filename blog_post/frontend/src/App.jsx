@@ -30,5 +30,11 @@ export default App
 // : Create a logout api: DONE
 // : Create login & register pages: DONE
 // : Create profile page and make it authenticated route: DONE
-// TODO: Create option to add a blog from profile page
-// TODO: Create option to delete a blog BUT only if you are logged in
+// : Create option to add a blog from profile page : DONE
+// : Create option to delete a blog BUT only if you are logged in : DONE
+// : Create option to update a blog : DONE
+// : Create option to preview selected image : DONE
+// : Hide "Get started" button if loggedIn : DONE
+// : Fix "user is null" error on login page : DONE
+// : Create option to add user image while registering : DONE
+// TODO: Fix "Changing token doesnt kick user out"
