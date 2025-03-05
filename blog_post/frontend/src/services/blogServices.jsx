@@ -47,6 +47,20 @@ export const createBlog = async (token, blogData) => {
   }
 }
 
+// update blog
+export const updateBlog = async (token, data, id) => {
+  try {
+    const res = await axios.put(`${baseUrl}/blogs/${id}`, data, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    return res.data
+  } catch (err) {
+    console.error(err.message)
+  }
+}
+
 // delete blog
 export const deleteBlog = async (token, blogId) => {
   try {
