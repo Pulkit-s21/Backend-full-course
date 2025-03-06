@@ -37,4 +37,5 @@ export default App
 // : Create option to add user image while registering : DONE
 // : Hide "Get started" button if loggedIn : DONE
 // : Fix "user is null" error on login page : DONE
+// : Show error msg on Login and Register page : DONE
 // TODO: Fix "Changing token doesnt kick user out"
