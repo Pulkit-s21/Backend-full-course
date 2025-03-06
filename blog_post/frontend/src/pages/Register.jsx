@@ -68,6 +68,14 @@ export const Register = () => {
         })
       }
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: `${err.response.data.message}. Login with this email`,
+      }).then((res) => {
+        if (res.isConfirmed) {
+          window.location.href = "/login"
+        }
+      })
       console.error(err.message)
     }
   }

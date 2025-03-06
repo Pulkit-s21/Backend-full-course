@@ -41,6 +41,10 @@ export const Login = () => {
         })
       }
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: `${err.response.data.message}`,
+      })
       console.error(err.message)
     }
   }
