@@ -19,14 +19,24 @@ router.post("/register", upload.single("image"), async (req, res) => {
 
     const hashedPswrd = bcrypt.hashSync(password, 8) // hashing pswrd for security
 
-    const user = await prisma.users.create({
-      data: {
-        username,
-        email,
-        image: req.file ? `/uploads/${req.file.filename}` : null,
-        password: hashedPswrd,
-      },
+    const user = await prisma.users.findUnique({
+      where: { email },
     })
+
+    if (user) {
+      return res
+        .status(401)
+        .json({ message: "User already exists with this email" })
+    } else {
+      await prisma.users.create({
+        data: {
+          username,
+          email,
+          image: req.file ? `/uploads/${req.file.filename}` : null,
+          password: hashedPswrd,
+        },
+      })
+    }
 
     // default blog on creation of new user
     await prisma.blog.create({
