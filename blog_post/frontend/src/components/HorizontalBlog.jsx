@@ -9,7 +9,9 @@ export const HorizontalBlog = ({
 }) => {
   return (
     <div className="flex flex-row gap-5 rounded-tl-lg rounded-bl-lg overflow-hidden">
-      <img className="w-96" src={image} alt="Blog Image" />
+      <div className="w-96">
+        <img className="w-full h-full" src={image} alt="Blog Image" />
+      </div>
 
       <div className="flex flex-col gap-2">
         {/* writer div */}
