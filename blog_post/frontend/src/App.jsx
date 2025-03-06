@@ -38,4 +38,5 @@ export default App
 // : Hide "Get started" button if loggedIn : DONE
 // : Fix "user is null" error on login page : DONE
 // : Show error msg on Login and Register page : DONE
+// : Logout when token is expired : DONE
 // TODO: Fix "Changing token doesnt kick user out"
