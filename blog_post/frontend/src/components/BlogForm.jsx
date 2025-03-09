@@ -142,7 +142,7 @@ export const BlogForm = ({ onSuccess }) => {
         onChange={handleTagsChange}
         required
       /> */}
-      <button className="bg-blue-600 hover:bg-red-400 w-fit px-6 py-1 text-white rounded-2xl cursor-pointer">
+      <button className="bg-blue-600 hover:bg-red-400 px-6 py-2 text-white rounded-2xl cursor-pointer">
         Post
       </button>
     </form>
