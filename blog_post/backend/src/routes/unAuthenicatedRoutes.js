@@ -5,7 +5,7 @@ const router = Router()
 
 // get all blogs
 router.get("/all", async (req, res) => {
-  const limit = parseInt(req.query.limit) || 10
+  const limit = req.query.limit ? parseInt(req.query.limit) : undefined
   try {
     const blogs = await prisma.blog.findMany({
       where: {
@@ -16,7 +16,7 @@ router.get("/all", async (req, res) => {
       orderBy: {
         createdAt: "desc",
       },
-      take: limit,
+      take: limit || undefined,
       // need to send this part explicitly
       include: {
         user: {
