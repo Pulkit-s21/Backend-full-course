@@ -81,11 +81,12 @@ export const Register = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <h3>Register</h3>
+    <div className="grid grid-cols-1 gap-4 px-6">
+      <h3 className="font-bold text-6xl text-blue-500">Register</h3>
       <form onSubmit={signUp} className="grid grid-cols-1 gap-4">
-        <label>Username</label>
+        <label className="text-sm text-slate-500 -mb-1">Username</label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="text"
           placeholder="Enter your username"
           name="username"
@@ -93,8 +94,9 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label>Email</label>
+        <label className="text-sm text-slate-500 -mb-1">Email</label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="email"
           placeholder="Enter your email"
           name="email"
@@ -102,8 +104,9 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label>Password</label>
+        <label className="text-sm text-slate-500 -mb-1">Password</label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="password"
           placeholder="Enter your password"
           name="password"
@@ -111,18 +114,25 @@ export const Register = () => {
           onChange={handleChange}
           required
         />
-        <label>Confirm Password</label>
+        <label className="text-sm text-slate-500 -mb-1">Confirm Password</label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="password"
           placeholder="Confirm your password"
           value={confirmPswrd}
           onChange={handleConfirmPswrdChange}
           required
         />
-        <label>Profile Image</label>
-        <input type="file" name="image" onChange={handleImageChange} required />
+        <label className="text-sm text-slate-500">Profile Image</label>
+        <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
+          type="file"
+          name="image"
+          onChange={handleImageChange}
+          required
+        />
 
-        <button className="bg-blue-900 px-4 py-0.5 w-fit text-white rounded-2xl cursor-pointer border-2 border-transparent hover:bg-white hover:text-blue-900 hover:border-blue-900 transition-all duration-300">
+        <button className="bg-blue-900 px-6 py-0.5 w-fit text-white rounded-xl cursor-pointer border-2 border-transparent hover:bg-white hover:text-blue-900 hover:border-blue-900 transition-all duration-300">
           Sign up
         </button>
       </form>
@@ -131,7 +141,10 @@ export const Register = () => {
         <p>
           Already have an account?{" "}
           <span>
-            <Link className="font-semibold text-blue-400" to={"/login"}>
+            <Link
+              className="font-semibold text-lg text-blue-600 underline"
+              to={"/login"}
+            >
               Login
             </Link>
           </span>

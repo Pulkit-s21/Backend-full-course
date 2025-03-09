@@ -50,11 +50,14 @@ export const Login = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <h3>Login</h3>
+    <div className="grid grid-cols-1 gap-4 px-6 bg-url">
+      <h3 className="font-bold text-6xl text-blue-500">Login</h3>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
-        <label htmlFor="">Email</label>
+        <label className="text-sm text-slate-500 -mb-1" htmlFor="">
+          Email
+        </label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="email"
           placeholder="Enter your email"
           name="email"
@@ -62,8 +65,11 @@ export const Login = () => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="">Password</label>
+        <label className="text-sm text-slate-500 -mb-1" htmlFor="">
+          Password
+        </label>
         <input
+          className="border-2 border-slate-100 w-fit rounded-md px-4 py-1 placeholder:text-neutral-700"
           type="password"
           placeholder="Enter your password"
           name="password"
@@ -71,15 +77,18 @@ export const Login = () => {
           onChange={handleChange}
           required
         />
-        <button className="bg-blue-900 px-4 py-0.5 w-fit text-white rounded-2xl cursor-pointer border-2 border-transparent hover:bg-white hover:text-blue-900 hover:border-blue-900 transition-all duration-300">
+        <button className="bg-blue-900 px-6 py-0.5 w-fit text-white rounded-xl cursor-pointer border-2 border-transparent hover:bg-white hover:text-blue-900 hover:border-blue-900 transition-all duration-300">
           Log in
         </button>
       </form>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         Dont have an account?{" "}
         <span>
-          <Link className="font-semibold text-blue-400" to={"/register"}>
+          <Link
+            className="font-semibold text-lg text-blue-600 underline"
+            to={"/register"}
+          >
             Register
           </Link>
         </span>
