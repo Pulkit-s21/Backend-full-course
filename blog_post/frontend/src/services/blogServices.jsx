@@ -5,9 +5,7 @@ import baseUrl from "../utils/baseUrl"
 export const fetchAllBlogs = async (limit) => {
   try {
     const res = await axios.get(`${baseUrl}/home/all`, {
-      params: {
-        limit,
-      },
+      params: limit,
     })
 
     return res.data
@@ -34,9 +32,9 @@ export const fetchUserBlogs = async (token) => {
 }
 
 // create new blog
-export const createBlog = async (token, blogData) => {
+export const createBlog = async (token, data) => {
   try {
-    const res = await axios.post(`${baseUrl}/blogs`, blogData, {
+    const res = await axios.post(`${baseUrl}/blogs`, data, {
       headers: {
         Authorization: token,
       },
@@ -62,9 +60,9 @@ export const updateBlog = async (token, data, id) => {
 }
 
 // delete blog
-export const deleteBlog = async (token, blogId) => {
+export const deleteBlog = async (token, id) => {
   try {
-    const res = await axios.delete(`${baseUrl}/blogs/${blogId}`, {
+    const res = await axios.delete(`${baseUrl}/blogs/${id}`, {
       headers: {
         Authorization: token,
       },
