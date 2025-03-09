@@ -10,7 +10,11 @@ export const HorizontalBlog = ({
   return (
     <div className="flex flex-row gap-5 rounded-tl-lg rounded-bl-lg overflow-hidden">
       <div className="w-96">
-        <img className="w-full h-full" src={image} alt="Blog Image" />
+        <img
+          className="w-full h-80 object-cover"
+          src={image}
+          alt="Blog Image"
+        />
       </div>
 
       <div className="flex flex-col gap-2">
