@@ -69,6 +69,7 @@ export const Profile = () => {
                     : `${baseUrl}${blog?.image}`
                 }
                 username={user?.username}
+                userImg={user?.image}
                 createdAt={blog?.createdAt}
                 title={blog?.title}
                 description={blog?.description}
