@@ -70,7 +70,7 @@ export const VerticalBlog = ({
     <div className="grid grid-cols-1 gap-5 overflow-hidden cursor-pointer">
       <div className="max-w-full aspect-video">
         <img
-          className="w-full h-full object-cover rounded-2xl border-2 border-slate-100 p-0.5"
+          className="w-full h-full object-cover rounded-2xl shadow-xl"
           src={image}
           alt="Blog Image"
         />
