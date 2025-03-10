@@ -40,5 +40,5 @@ export default App
 // : Show error msg on Login and Register page : DONE
 // : Logout when token is expired : DONE
 // : Create pagination for "All Blogs" : DONE
-// TODO: Design login and register page
+// : Design login and register page : DONE
 // TODO: Fix "Changing token doesnt kick user out"
