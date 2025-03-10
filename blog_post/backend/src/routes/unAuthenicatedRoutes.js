@@ -23,6 +23,7 @@ router.get("/all", async (req, res) => {
           select: {
             username: true,
             email: true,
+            image: true,
           },
         },
       },
