@@ -38,10 +38,11 @@ export const Recentblog = () => {
                   : `${baseUrl}${blogs[0]?.image}`
               }
               username={blogs[0]?.user?.username?.split("@")[0]} // getting the part before "@"
+              userImg={blogs[0]?.user.image}
               title={blogs[0]?.title}
               description={blogs[0]?.description}
               createdAt={blogs[0]?.createdAt}
-              tags={blogs[0].tags}
+              tags={blogs[0]?.tags}
             />
           ) : (
             <h1 className="text-5xl text-red-500 font-bold">
@@ -60,6 +61,7 @@ export const Recentblog = () => {
                     : `${baseUrl}${blog?.image}`
                 }
                 username={blog?.user?.username?.split("@")[0]} // getting the part before "@"
+                userImg={blog?.user.image}
                 title={blog?.title}
                 description={blog?.description}
                 createdAt={moment(blog?.createdAt).fromNow()}

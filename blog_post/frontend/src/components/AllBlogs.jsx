@@ -52,10 +52,11 @@ export const AllBlogs = () => {
                     : `${baseUrl}${blog?.image}`
                 }
                 username={blog?.user?.username?.split("@")[0]} // getting the part before "@"
+                userImg={blog?.user.image}
                 title={blog?.title}
                 description={blog?.description}
                 createdAt={blog?.createdAt}
-                tags={blog.tags}
+                tags={blog?.tags}
               />
             )
           })
