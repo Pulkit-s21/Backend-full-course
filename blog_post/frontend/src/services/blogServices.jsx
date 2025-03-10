@@ -5,7 +5,7 @@ import baseUrl from "../utils/baseUrl"
 export const fetchAllBlogs = async (limit) => {
   try {
     const res = await axios.get(`${baseUrl}/home/all`, {
-      params: limit,
+      params: limit ? { limit } : {}, // imp. API takes undefined if not this
     })
 
     return res.data
