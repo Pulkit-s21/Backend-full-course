@@ -7,6 +7,7 @@ import { UpdateForm } from "./UpdateForm"
 import moment from "moment"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
+import baseUrl from "../utils/baseUrl"
 
 export const VerticalBlog = ({
   image,
@@ -17,6 +18,7 @@ export const VerticalBlog = ({
   tags,
   id,
   blog,
+  userImg,
 }) => {
   const location = useLocation()
   const token = localStorage.getItem("token")
@@ -65,21 +67,34 @@ export const VerticalBlog = ({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-t-2xl">
-      <div className="max-w-xl aspect-square overflow-hidden">
+    <div className="grid grid-cols-1 gap-5 overflow-hidden cursor-pointer">
+      <div className="max-w-full aspect-video">
         <img
-          className="w-full h-full object-cover transition-all duration-500"
+          className="w-full h-full object-cover rounded-xl border-2 border-slate-100 p-0.5"
           src={image}
           alt="Blog Image"
         />
       </div>
 
       {/* writer div */}
-      <div className="flex justify-between pr-4">
+      <div className="flex justify-between items-center pr-4">
         <div className="flex gap-2">
-          <p>{username}</p>
-          <p>&bull;</p>
-          <p className="text-slate-500">{moment(createdAt).fromNow()}</p>
+          <p className="font-medium text-slate-500">
+            {moment(createdAt).format("MMMM D, YYYY")}
+          </p>
+          {/* tags */}
+          <div className="flex flex-row flex-wrap items-end gap-2">
+            {tags.map((tag, idx) => {
+              return (
+                <p
+                  key={idx}
+                  className="rounded-xl px-4 py-1 xl:text-xs text-gray-500 cursor-pointer bg-gray-50"
+                >
+                  {tag}
+                </p>
+              )
+            })}
+          </div>
         </div>
 
         {location.pathname === "/profile" && (
@@ -151,18 +166,17 @@ export const VerticalBlog = ({
         <p className="xl:text-base text-slate-500">{description}</p>
       </div>
 
-      {/* tags */}
-      <div className="flex flex-row flex-wrap items-end gap-2">
-        {tags.map((tag, idx) => {
-          return (
-            <p
-              key={idx}
-              className="border-2 rounded-xl px-3 xl:text-xs tracking-widest font-medium hover:text-gray-800 hover:border-slate-500 transition-all duration-200 cursor-pointer"
-            >
-              {tag}
-            </p>
-          )
-        })}
+      {/* user blog */}
+      <div className="flex gap-3 items-center">
+        <img
+          src={`${baseUrl}${userImg}`}
+          className="w-10 h-10 object-cover rounded-full"
+          alt="Img"
+        />
+        <div className="flex flex-col gap-1">
+          <p className="text-sm font-medium text-slate-600">{username}</p>
+          <p className="text-xs text-slate-600">Writer</p>
+        </div>
       </div>
     </div>
   )
