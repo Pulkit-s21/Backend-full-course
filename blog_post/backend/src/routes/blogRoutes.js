@@ -132,7 +132,7 @@ router.delete("/:id", async (req, res) => {
     await prisma.blog.delete({
       where: {
         id: parseInt(id),
-        userId: req.userID,
+        userId: req.userId,
       },
     })
 

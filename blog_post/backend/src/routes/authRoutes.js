@@ -120,6 +120,7 @@ router.get("/users/:id", authMiddleWare, async (req, res) => {
     return res.json(user)
   } catch (err) {
     console.error(err.message)
+    res.status(503).send({ message: "Something went wrong!!" })
   }
 })
 

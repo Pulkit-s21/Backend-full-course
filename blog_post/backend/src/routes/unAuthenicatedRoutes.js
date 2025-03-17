@@ -32,7 +32,7 @@ router.get("/all", async (req, res) => {
     if (!blogs)
       return res
         .status(404)
-        .send({ message: "No blog found associated with the user" })
+        .send({ message: "No blogs found" })
 
     res.json(blogs)
   } catch (err) {
