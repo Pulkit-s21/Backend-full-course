@@ -7,7 +7,6 @@ export const fetchAllBlogs = async (limit) => {
     const res = await axios.get(`${baseUrl}/home/all`, {
       params: limit ? { limit } : {}, // imp. API takes undefined if not this
     })
-
     return res.data
   } catch (err) {
     console.error(err.message)
@@ -20,10 +19,9 @@ export const fetchUserBlogs = async (token) => {
   try {
     const res = await axios.get(`${baseUrl}/blogs`, {
       headers: {
-        Authorization: `${token}`,
+        Authorization: token,
       },
     })
-
     return res.data
   } catch (err) {
     console.error(err.message)
